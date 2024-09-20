@@ -24,4 +24,13 @@ app.MapGet("/net", () =>
     .WithName("GetNet")
     .WithOpenApi();
 
+app.MapGet("/java", async () =>
+    {
+        HttpClient client = new HttpClient();
+        HttpResponseMessage response = await client.GetAsync(new Uri("http://localhost:8080/java"));
+        return await response.Content.ReadAsStringAsync();
+    })
+    .WithName("GetJava")
+    .WithOpenApi();
+
 app.Run();
